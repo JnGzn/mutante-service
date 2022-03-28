@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": "./src",
+        "paths": {
+            "": ["node_modules/*"]
+        },
+        "pretty": true,
+        "strict": true
+
+    }, 
+    "include": ["src/**/*.ts", "src/test/todo.test.ts"]
+}
