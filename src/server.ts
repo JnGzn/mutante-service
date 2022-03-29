@@ -5,7 +5,7 @@ import fotenv from "dotenv";
 // lectura configuracion .env
 fotenv.config()
 
-const port = process.env.SERVER_PORT || 3000
+const port = process.env.PORT || 3000
 // Instancia de la clase App
 const objApp = new App()
 
