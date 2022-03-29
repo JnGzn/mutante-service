@@ -13,6 +13,10 @@
     "start": "node .",
     "test": "jest --watchAll"
   },
+  "engines": {
+    "node": ">14.17.3",
+    "npm": ">=8.1.2"
+  },
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
