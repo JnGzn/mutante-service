@@ -1,27 +1,27 @@
 // importacion librerias
 import express from 'express'
-import { Producto } from '../services/producto/producto.service';
+import { Mutante } from '../services/mutanteService/mutante.service';
 
 
 
-export  class ProductoController {
+export  class MutanteController {
 
-    private productoService
+    private mutanteService
     constructor(){
-        this.productoService = new Producto()
+        this.mutanteService = new Mutante()
     }
     public routes(app: any){
 
 
 
-        // EndPoint GET
-        // obtiene el listado de productos y los retorna
-        app.get('/productos', async (req : express.Request, res: express.Response) => {
+        // EndPoint POST
+        // validal el adn enviado y regresa si es mutante o no
+        app.post('/mutant/', async (req : express.Request, res: express.Response) => {
 
 
             try {
 
-                const result = await this.productoService.getProductos()
+                const result = await this.mutanteService.isMutant(req.body.dna)
                 // Responde y funaliza la peticion
                 res.status(200).json({
                     data: result,
@@ -31,7 +31,7 @@ export  class ProductoController {
                 return
 
             } catch (error) {
-                console.error(`ControllerTodo -> GET /productos:: ${JSON.stringify(error)}`)
+                console.error(`ControllerTodo -> POST /mutant:: ${JSON.stringify(error)}`)
                 // Responde y funaliza la peticion
                 res.status(500).json({
                     data: null,
