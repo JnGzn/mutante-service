@@ -19,8 +19,11 @@ export default class App {
     this.app = express()
     this.app.use(express.json())
     this.app.use(logger('dev'))
+
     // inicio routes
+    console.log("Inicializacion rutas");
     this.rutasMutante.routes(this.app)
+    console.log("Rutas incilializadas");
 
   }
 }
