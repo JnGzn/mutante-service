@@ -10,8 +10,8 @@
     "build": "npm-run-all clean lint tsc",
     "dev:start": "npm-run-all build start",
     "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
-    "start": "npm-run-all build start",
-    "test": "build jest --watchAll"
+    "start": "node .",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -25,7 +25,6 @@
     "@types/jest": "^26.0.22",
     "@types/joi": "^17.2.3",
     "@types/morgan": "^1.9.2",
-    "axios": "^0.21.1",
     "jest": "^26.6.3",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",

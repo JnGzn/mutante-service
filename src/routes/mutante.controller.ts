@@ -64,7 +64,33 @@ export  class MutanteController {
                 return
 
             } catch (error) {
-                console.error(`ControllerTodo -> POST /mutant:: ${JSON.stringify(error)}`)
+                console.error(`MutanteConstroller -> POST /mutant:: ${JSON.stringify(error)}`)
+                // Responde y funaliza la peticion
+                res.status(500).json({
+                    data: null,
+                    err: error
+                }).end()
+            }
+        })
+
+        // EndPoint POST
+        // validal el adn enviado y regresa si es mutante o no
+        app.post('/stats/', async (req : express.Request, res: express.Response) => {
+
+
+            try {
+
+                // Responde y funaliza la peticion
+                res.status(200).json({
+                    data: {'count_mutant_dna':40, 'count_human_dna':100, 'ratio':0.4},
+                    err: null
+                }).end()
+
+                // finaliza el metodo
+                return
+
+            } catch (error) {
+                console.error(`MutanteConstroller -> POST /mutant:: ${JSON.stringify(error)}`)
                 // Responde y funaliza la peticion
                 res.status(500).json({
                     data: null,
