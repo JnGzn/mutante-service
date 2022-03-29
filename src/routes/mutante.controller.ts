@@ -14,11 +14,12 @@ export  class MutanteController {
     public routes(app: any){
 
         console.log("routes");
-        
+
         // EndPoint POST
         // validal el adn enviado y regresa si es mutante o no
-        app.post('/mutant/', async (req : express.Request, res: express.Response) => {
+        app.post('/mutant', async (req : express.Request, res: express.Response) => {
 
+            console.log("MutanteController -> POST mutant: Body: "+ req.body);
 
             try {
 
@@ -75,8 +76,9 @@ export  class MutanteController {
 
         // EndPoint POST
         // validal el adn enviado y regresa si es mutante o no
-        app.post('/stats/', async (req : express.Request, res: express.Response) => {
+        app.post('/stats', async (req : express.Request, res: express.Response) => {
 
+            console.log("MutanteController -> GET stats: Body: "+ req.body);
 
             try {
 
