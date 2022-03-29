@@ -74,9 +74,9 @@ export  class MutanteController {
             }
         })
 
-        // EndPoint POST
+        // EndPoint GET
         // validal el adn enviado y regresa si es mutante o no
-        app.post('/stats', async (req : express.Request, res: express.Response) => {
+        app.get('/stats', async (req : express.Request, res: express.Response) => {
 
             console.log("MutanteController -> GET stats: Body: "+ req.body);
 
