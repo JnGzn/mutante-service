@@ -82,9 +82,10 @@ export  class MutanteController {
 
             try {
 
+                const result = await this.mutanteService.consulaReporte()
                 // Responde y funaliza la peticion
                 res.status(200).json({
-                    data: {'count_mutant_dna':40, 'count_human_dna':100, 'ratio':0.4},
+                    data: result,
                     err: null
                 }).end()
 

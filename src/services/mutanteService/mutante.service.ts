@@ -8,6 +8,7 @@ export class Mutante extends ServiceTodo {
 
     /**
      *  Valida la matiz (ADN) y valida las diferentes secuencias
+     *  Guarda el adn en la base de datos
      *  Retorna true/false si es mutante o no
      */
     async isMutant(dna: string[]): Promise<boolean> {
@@ -22,7 +23,25 @@ export class Mutante extends ServiceTodo {
 
         console.log("CANT MUTACIONES: "+ contSecuencia);
 
-        return contSecuencia > 1
+        const esMutante = contSecuencia > 1
+        await this.persistenceService.insertAdn(dna, esMutante)
+
+        return esMutante
+    }
+
+    /**
+     *  Consulta la base de datos
+     *  Retorna reporte de humanos/mutantes/ratio
+     */
+    async consulaReporte(): Promise<any> {
+
+        const result = await this.persistenceService.consultarReporte()
+
+        return {
+            count_mutant_dna: result.mutantes,
+            count_human_dna: result.humanos,
+            ratio: result.mutantes/result.humanos
+        }
     }
 
     /**
