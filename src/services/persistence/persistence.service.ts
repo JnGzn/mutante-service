@@ -33,7 +33,7 @@ export class PersistenceService {
 
         try {
             await this.abrirConexion();
-            const result = await this.client.query(`INSERT INTO mutantes (dna, esMutant) VALUES ('${JSON.stringify(adn)}', ${esMutante})`)
+            const result = await this.client.query(`INSERT INTO mutantes (dna, esMutant) VALUES ('${JSON.stringify(adn)}', ${esMutante}) ON CONFLICT (dna) DO NOTHING `)
             this.client.end()
         } catch (error) {
             console.debug(error);
