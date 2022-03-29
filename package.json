@@ -10,8 +10,8 @@
     "build": "npm-run-all clean lint tsc",
     "dev:start": "npm-run-all build start",
     "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
-    "start": "node .",
-    "test": "jest --watchAll"
+    "start": "npm-run-all build start",
+    "test": "build jest --watchAll"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
