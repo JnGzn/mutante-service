@@ -36,7 +36,8 @@ export class PersistenceService {
             const result = await this.client.query(`INSERT INTO mutantes (dna, esMutant) VALUES ('${JSON.stringify(adn)}', ${esMutante})`)
             this.client.end()
         } catch (error) {
-            console.log(error);
+            console.debug(error);
+            throw error
         }
     }
 
@@ -48,13 +49,14 @@ export class PersistenceService {
 
         try {
             await this.abrirConexion();
-            const result = await this.client.query(` SELECT
+            const result = await this.client.query(`SELECT
           (SELECT COUNT(*) FROM mutantes WHERE esMutant = false) as humanos,
           (SELECT COUNT(*) FROM mutantes WHERE esMutant = true) as mutantes`)
             this.client.end()
             return result.rows[0]
         } catch (error) {
-            console.log(error)
+            console.debug(error)
+            throw error
         }
     }
 }

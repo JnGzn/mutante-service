@@ -21,9 +21,7 @@ export default class App {
     this.app.use(logger('dev'))
 
     // inicio routes
-    console.log("Inicializacion rutas");
     this.rutasMutante.routes(this.app)
-    console.log("Rutas incilializadas");
 
   }
 }

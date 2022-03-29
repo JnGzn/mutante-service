@@ -1,6 +1,6 @@
 // importacion librerias
 import express from 'express'
-import { Mutante } from '../services/mutanteService/mutante.service';
+import { MutanteService } from '../services/mutanteService/mutante.service';
 import { schemaMutantePost } from '../validators/mutante.validator';
 
 
@@ -9,17 +9,15 @@ export  class MutanteController {
 
     private mutanteService
     constructor(){
-        this.mutanteService = new Mutante()
+        this.mutanteService = new MutanteService()
     }
     public routes(app: any){
-
-        console.log("routes");
 
         // EndPoint POST
         // validal el adn enviado y regresa si es mutante o no
         app.post('/mutant', async (req : express.Request, res: express.Response) => {
 
-            console.log("MutanteController -> POST mutant: Body: "+ req.body);
+            console.debug(`MutanteController -> POST mutant: Body: ${JSON.stringify(req.body)}`);
 
             try {
 
@@ -57,8 +55,8 @@ export  class MutanteController {
 
                 const result = await this.mutanteService.isMutant(req.body.dna)
                 // Responde y funaliza la peticion
-                res.status(200).json({
-                    data: result,
+                res.status(result ? 200: 403).json({
+                    data: result ? 'true, is a mutant': 'FORBIDDEN',
                 }).end()
 
                 // finaliza el metodo
@@ -78,7 +76,7 @@ export  class MutanteController {
         // validal el adn enviado y regresa si es mutante o no
         app.get('/stats', async (req : express.Request, res: express.Response) => {
 
-            console.log("MutanteController -> GET stats: Body: "+ req.body);
+            console.debug(`MutanteController -> GET stats`);
 
             try {
 
