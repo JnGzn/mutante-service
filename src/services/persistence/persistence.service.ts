@@ -24,7 +24,8 @@ export class PersistenceService {
             });
             await this.client.connect()
         } catch (error) {
-            throw new Error('Error al abrir la conexion a la Bd')
+            console.log(error)
+            throw error
         }
     }
 
