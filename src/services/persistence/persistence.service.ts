@@ -7,7 +7,9 @@ fotenv.config()
 
 export class PersistenceService {
 
-    private client: Client = new Client()
+    private client: Client = new Client();
+    tablaBd: string = 'mutantes'
+
 
     /**
      * Abre la conexion a la base de datos
@@ -33,7 +35,7 @@ export class PersistenceService {
 
         try {
             await this.abrirConexion();
-            const result = await this.client.query(`INSERT INTO mutantes (dna, esMutant) VALUES ('${JSON.stringify(adn)}', ${esMutante}) ON CONFLICT (dna) DO NOTHING `)
+            const result = await this.client.query(`INSERT INTO ${this.tablaBd} (dna, esMutant) VALUES ('${JSON.stringify(adn)}', ${esMutante}) ON CONFLICT (dna) DO NOTHING `)
             this.client.end()
         } catch (error) {
             console.debug(error);
@@ -50,8 +52,8 @@ export class PersistenceService {
         try {
             await this.abrirConexion();
             const result = await this.client.query(`SELECT
-          (SELECT COUNT(*) FROM mutantes WHERE esMutant = false) as humanos,
-          (SELECT COUNT(*) FROM mutantes WHERE esMutant = true) as mutantes`)
+          (SELECT COUNT(*) FROM ${this.tablaBd} WHERE esMutant = false) as humanos,
+          (SELECT COUNT(*) FROM ${this.tablaBd} WHERE esMutant = true) as mutantes`)
             this.client.end()
             return result.rows[0]
         } catch (error) {
