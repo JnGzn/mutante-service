@@ -57,6 +57,7 @@ export  class MutanteController {
                 // Responde y funaliza la peticion
                 res.status(result ? 200: 403).json({
                     data: result ? 'true, is a mutant': 'FORBIDDEN',
+                    err: null
                 }).end()
 
                 // finaliza el metodo
