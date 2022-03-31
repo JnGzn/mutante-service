@@ -68,7 +68,7 @@ export  class MutanteController {
                 // Responde y funaliza la peticion
                 res.status(500).json({
                     data: null,
-                    err: error
+                    err: ['Internal_server_error']
                 }).end()
             }
         })
@@ -96,7 +96,7 @@ export  class MutanteController {
                 // Responde y funaliza la peticion
                 res.status(500).json({
                     data: null,
-                    err: error
+                    err: ['Internal_server_error']
                 }).end()
             }
         })
